@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+  <bean id="userService" class="com.cyzc.spring.proxy.UserServiceImpl"/>
+
+  <bean id="orderService" class="com.cyzc.spring.proxy.OrderServiceImpl"/>
+
+  <!--<bean id="before" class="com.cyzc.spring.proxy.dynamic.Before"/>-->
+  <bean id="before" class="com.cyzc.spring.proxy.dynamic.Before1"/>
+
+  <bean id="around" class="com.cyzc.spring.proxy.dynamic.Around"/>
+  <aop:config proxy-target-class="true">
+    <!--pointcut:切入点 execution(* *(..)) 是所有的方法都加入额外功能-->
+    <!--<aop:pointcut id="pc" expression="execution(* com.cyzc.spring.proxy.UserServiceImpl.*(..))"/>-->
+   <!-- <aop:pointcut id="pc" expression="execution(* *....UserServiceImpl.*(..))"/>-->
+    <!--所有的方法都加上 before的功能-->
+    <!--<aop:advisor advice-ref="before" pointcut-ref="pc"/>-->
+
+    <aop:pointcut id="pc" expression="@annotation(com.cyzc.spring.annotation.Log)"/>
+
+    <aop:advisor advice-ref="around" pointcut-ref="pc"/>
+
+  </aop:config>
+</beans>
