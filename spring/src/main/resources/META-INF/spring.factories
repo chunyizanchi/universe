@@ -1,0 +1,1 @@
+com.cyzc.spring.extension.MyEnableAutoConfiguration=com.cyzc.spring.bean.PersonBean
