@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cyzc.spring.mybatis.dao.UserDao">
+  <insert id="save" parameterType="com.cyzc.spring.mybatis.entity.User">
+    insert into t_users(name, password) values (#{name}, #{password})
+  </insert>
+</mapper>
+

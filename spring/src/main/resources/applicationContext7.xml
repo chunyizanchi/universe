@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+  <!--连接池-->
+  <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/spring?useSSL=false"/>
+    <property name="username" value="root"/>
+    <property name="password" value="123456"/>
+  </bean>
+
+  <!--创建SqlSessionFactory SqlSessionFactoryBean-->
+  <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <!-- 指定实体类所在的包 -->
+    <property name="typeAliasesPackage" value="com.cyzc.spring.mybatis.entity"/>
+    <!--指定配置文件（映射文件）的路径，还有通用配置-->
+    <property name="mapperLocations">
+      <list>
+        <value>classpath:UserDaoMapper.xml</value>
+      </list>
+    </property>
+  </bean>
+
+  <!--创建DAO对象 MapperScannerConfigure-->
+  <bean id="scanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+    <!--指定DAO接口放置的包-->
+    <property name="basePackage" value="com.cyzc.spring.mybatis.dao"/>
+  </bean>
+
+  <bean id="userService" class="com.cyzc.spring.mybatis.service.UserServiceImpl">
+    <property name="userDao" ref="userDao"/>
+  </bean>
+
+  <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>
+
+  <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+</beans>
