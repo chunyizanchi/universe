@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ${APPLICATION_NAME:name}
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:123456}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+#   timeout: 2000
+#   database: 0
+#   jedis:
+#     pool:
+#       max-active: 8
+#       max-idle: 8
+#       max-wait: -1
+#       min-idle: 0
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+
