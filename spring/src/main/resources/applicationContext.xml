@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+  <bean id="person" class="com.cyzc.spring.bean.Person"><!-- p:name-->
+    <property name="name">
+      <value>gaoxing</value>
+    </property>
+    <property name="sex">
+      <value>女</value>
+    </property>
+    <property name="emails">
+      <list>
+        <value>1157060393@qq.com</value>
+        <value>1021981208@qq.com</value>
+      </list>
+    </property>
+    <property name="tesl">
+      <set>
+        <value>17806251592</value>
+        <value>18396763872</value>
+        <value>18521700340</value>
+        <value>18521700340</value>
+        <!--<ref bean=""-->
+      </set>
+    </property>
+    <property name="addresses">
+      <list>
+        <value>linyi</value>
+        <value>qingdao</value>
+        <value>shanghai</value>
+        <!--<ref bean=""-->
+      </list>
+    </property>
+    <property name="maps">
+      <map>
+        <entry>
+          <key>
+            <value>key</value>
+          </key>
+          <value>value</value>
+          <!--<ref bean=""-->
+        </entry>
+        <entry>
+          <key>
+            <value>key2</value>
+          </key>
+          <value>value3</value>
+          <!--<ref bean=""-->
+        </entry>
+
+      </map>
+    </property>
+    <property name="properties">
+      <props>
+        <prop key="key1">value1</prop>
+        <prop key="key2">value2</prop>
+
+      </props>
+    </property>
+  </bean>
+
+
+  <bean id="person2" class="com.cyzc.spring.bean.Person"/>
+
+  <bean class="com.cyzc.spring.bean.Person"/>
+
+  <bean id="person3" name="secondName" class="com.cyzc.spring.bean.Person"/>
+
+  <bean id="userService" class="com.cyzc.spring.service.impl.UserServiceImpl">
+    <property name="userDao">
+      <ref bean="userDao"/>
+    </property>
+  </bean>
+
+  <bean id="userDao" class="com.cyzc.spring.dao.UserDaoImpl"/>
+
+  <bean id="customer" class="com.cyzc.spring.bean.Customer">
+    <constructor-arg type="int">
+      <value>10</value>
+    </constructor-arg>
+  </bean>
+
+  <!--<bean id="connection" class="com.cyzc.spring.factorybean.ConnectFactoryBean">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://127.0.0.1:3306/mysql45"/>
+    <property name="userName" value="root"/>
+    <property name="passWord" value="123456"/>
+  </bean>-->
+
+  <!--
+    <bean id="connectionFactory" class="com.cyzc.spring.factorybean.ConnectFactory"/>
+    <bean id="connection" factory-bean="connectionFactory" factory-method="getConnect"/>
+    -->
+
+  <bean id="connection" class="com.cyzc.spring.factorybean.StaticConnectFactory"
+    factory-method="getConnection"/>
+
+  <!--  <bean id="account" scope="singleton" class="com.cyzc.spring.scope.Account"/>-->
+  <bean id="account" scope="prototype" class="com.cyzc.spring.scope.Account"/>
+  <bean id="product" class="com.cyzc.spring.life.Product" init-method="initProduct"
+    destroy-method="destroyProduct"/>
+
+  <bean id="myBeanPostProcessor" class="com.cyzc.spring.beanpost.MyBeanPostProcessor"/>
+</beans>
