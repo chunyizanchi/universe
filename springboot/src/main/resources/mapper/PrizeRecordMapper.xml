@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyzc.springboot.mapper.PrizeRecordMapper">
+  <resultMap id="BaseResultMap" type="com.cyzc.springboot.entity.PrizeRecord">
+    <!--@mbg.generated-->
+    <!--@Table prize_record-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="prize_id" jdbcType="INTEGER" property="prizeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_name, prize_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from prize_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from prize_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cyzc.springboot.entity.PrizeRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into prize_record (user_name, prize_id)
+    values (#{userName,jdbcType=VARCHAR}, #{prizeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cyzc.springboot.entity.PrizeRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into prize_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="prizeId != null">
+        prize_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeId != null">
+        #{prizeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyzc.springboot.entity.PrizeRecord">
+    <!--@mbg.generated-->
+    update prize_record
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeId != null">
+        prize_id = #{prizeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cyzc.springboot.entity.PrizeRecord">
+    <!--@mbg.generated-->
+    update prize_record
+    set user_name = #{userName,jdbcType=VARCHAR},
+      prize_id = #{prizeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select *
+    from prize_record;
+  </select>
+</mapper>

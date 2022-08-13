@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyzc.springboot.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.cyzc.springboot.entity.Order">
+    <!--@mbg.generated-->
+    <!--@Table `order`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="buy_name" jdbcType="VARCHAR" property="buyName" />
+    <result column="buy_goods" jdbcType="VARCHAR" property="buyGoods" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, buy_name, buy_goods
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `order`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `order`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cyzc.springboot.entity.Order" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `order` (buy_name, buy_goods)
+    values (#{buyName,jdbcType=VARCHAR}, #{buyGoods,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cyzc.springboot.entity.Order" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="buyName != null">
+        buy_name,
+      </if>
+      <if test="buyGoods != null">
+        buy_goods,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="buyName != null">
+        #{buyName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyGoods != null">
+        #{buyGoods,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyzc.springboot.entity.Order">
+    <!--@mbg.generated-->
+    update `order`
+    <set>
+      <if test="buyName != null">
+        buy_name = #{buyName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyGoods != null">
+        buy_goods = #{buyGoods,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cyzc.springboot.entity.Order">
+    <!--@mbg.generated-->
+    update `order`
+    set buy_name = #{buyName,jdbcType=VARCHAR},
+      buy_goods = #{buyGoods,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
