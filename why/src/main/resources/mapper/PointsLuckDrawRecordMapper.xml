@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyzc.why.mapper.PointsLuckDrawRecordMapper">
+  <resultMap id="BaseResultMap" type="com.cyzc.why.entity.PointsLuckDrawRecord">
+    <!--@mbg.generated-->
+    <!--@Table points_luck_draw_record-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="member_mobile" jdbcType="VARCHAR" property="memberMobile" />
+    <result column="points" jdbcType="INTEGER" property="points" />
+    <result column="prize_id" jdbcType="BIGINT" property="prizeId" />
+    <result column="result" jdbcType="SMALLINT" property="result" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="daily" jdbcType="DATE" property="daily" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, member_id, member_mobile, points, prize_id, `result`, `month`, daily, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from points_luck_draw_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from points_luck_draw_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cyzc.why.entity.PointsLuckDrawRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into points_luck_draw_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="memberMobile != null">
+        member_mobile,
+      </if>
+      <if test="points != null">
+        points,
+      </if>
+      <if test="prizeId != null">
+        prize_id,
+      </if>
+      <if test="result != null">
+        `result`,
+      </if>
+      <if test="month != null">
+        `month`,
+      </if>
+      <if test="daily != null">
+        daily,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberMobile != null">
+        #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null">
+        #{points,jdbcType=INTEGER},
+      </if>
+      <if test="prizeId != null">
+        #{prizeId,jdbcType=BIGINT},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=SMALLINT},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="daily != null">
+        #{daily,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyzc.why.entity.PointsLuckDrawRecord">
+    <!--@mbg.generated-->
+    update points_luck_draw_record
+    <set>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberMobile != null">
+        member_mobile = #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="points != null">
+        points = #{points,jdbcType=INTEGER},
+      </if>
+      <if test="prizeId != null">
+        prize_id = #{prizeId,jdbcType=BIGINT},
+      </if>
+      <if test="result != null">
+        `result` = #{result,jdbcType=SMALLINT},
+      </if>
+      <if test="month != null">
+        `month` = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="daily != null">
+        daily = #{daily,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

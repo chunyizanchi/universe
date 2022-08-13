@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyzc.why.mapper.TpExternalActSourceMapper">
+  <resultMap id="BaseResultMap" type="com.cyzc.why.entity.TpExternalActSource">
+    <!--@mbg.generated-->
+    <!--@Table TP_EXTERNAL_ACT_SOURCE-->
+    <id column="EXTERNAL_ACT_SOURCE_ID" jdbcType="VARCHAR" property="externalActSourceId" />
+    <result column="OPENID" jdbcType="VARCHAR" property="openid" />
+    <result column="ACTIVITYNAME" jdbcType="VARCHAR" property="activityname" />
+    <result column="CREATEDATE" jdbcType="DATE" property="createdate" />
+    <result column="ACTIVITYID" jdbcType="VARCHAR" property="activityid" />
+    <result column="USER_TYPE" jdbcType="VARCHAR" property="userType" />
+    <result column="SOURCE" jdbcType="VARCHAR" property="source" />
+    <result column="TERMINALID" jdbcType="VARCHAR" property="terminalid" />
+    <result column="TENANTID" jdbcType="VARCHAR" property="tenantid" />
+    <result column="ISNEW" jdbcType="VARCHAR" property="isnew" />
+    <result column="AFTER_LOGIN_OPENID" jdbcType="VARCHAR" property="afterLoginOpenid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    EXTERNAL_ACT_SOURCE_ID, OPENID, ACTIVITYNAME, CREATEDATE, ACTIVITYID, USER_TYPE, 
+    `SOURCE`, TERMINALID, TENANTID, ISNEW, AFTER_LOGIN_OPENID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from TP_EXTERNAL_ACT_SOURCE
+    where EXTERNAL_ACT_SOURCE_ID = #{externalActSourceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from TP_EXTERNAL_ACT_SOURCE
+    where EXTERNAL_ACT_SOURCE_ID = #{externalActSourceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.cyzc.why.entity.TpExternalActSource">
+    <!--@mbg.generated-->
+    insert into TP_EXTERNAL_ACT_SOURCE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="externalActSourceId != null">
+        EXTERNAL_ACT_SOURCE_ID,
+      </if>
+      <if test="openid != null">
+        OPENID,
+      </if>
+      <if test="activityname != null">
+        ACTIVITYNAME,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="activityid != null">
+        ACTIVITYID,
+      </if>
+      <if test="userType != null">
+        USER_TYPE,
+      </if>
+      <if test="source != null">
+        `SOURCE`,
+      </if>
+      <if test="terminalid != null">
+        TERMINALID,
+      </if>
+      <if test="tenantid != null">
+        TENANTID,
+      </if>
+      <if test="isnew != null">
+        ISNEW,
+      </if>
+      <if test="afterLoginOpenid != null">
+        AFTER_LOGIN_OPENID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="externalActSourceId != null">
+        #{externalActSourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="activityname != null">
+        #{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="activityid != null">
+        #{activityid,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalid != null">
+        #{terminalid,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        #{tenantid,jdbcType=VARCHAR},
+      </if>
+      <if test="isnew != null">
+        #{isnew,jdbcType=VARCHAR},
+      </if>
+      <if test="afterLoginOpenid != null">
+        #{afterLoginOpenid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyzc.why.entity.TpExternalActSource">
+    <!--@mbg.generated-->
+    update TP_EXTERNAL_ACT_SOURCE
+    <set>
+      <if test="openid != null">
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="activityname != null">
+        ACTIVITYNAME = #{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="activityid != null">
+        ACTIVITYID = #{activityid,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        USER_TYPE = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        `SOURCE` = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalid != null">
+        TERMINALID = #{terminalid,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        TENANTID = #{tenantid,jdbcType=VARCHAR},
+      </if>
+      <if test="isnew != null">
+        ISNEW = #{isnew,jdbcType=VARCHAR},
+      </if>
+      <if test="afterLoginOpenid != null">
+        AFTER_LOGIN_OPENID = #{afterLoginOpenid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EXTERNAL_ACT_SOURCE_ID = #{externalActSourceId,jdbcType=VARCHAR}
+  </update>
+</mapper>
