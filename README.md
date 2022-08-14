@@ -36,3 +36,9 @@ study
 
 ## 2022--8-12
 1. Spring 事务相关
+
+## 2022-08-13
+1. 初始化了一下项目
+
+## 2022-08-13
+1. maven 父子间依赖问题， scope 的几种属性： compile runtime, provide,test,system。 默认是 compile。
