@@ -1,4 +1,4 @@
-package com.cyzc.java.generic;
+package com.cyzc.java.generic.genericClass;
 
 /**
  * <>

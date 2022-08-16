@@ -1,6 +1,6 @@
-package com.cyzc.java.generic;
+package com.cyzc.java.generic.genericClass;
 
-import java.util.Set;
+import com.cyzc.java.generic.genericClass.Pair;
 
 /**
  * 通配符类型是安全的，原生态类型不安全，很容易破坏类型集合的约束条件
@@ -19,11 +19,10 @@ public class GenericTest {
         final Class<?> aClass = stringPair.getSecond().getClass();
         System.out.println(aClass);
 
-        System.out.println(stringPair);
+        final Class<?> bClass = stringPair.getFirst().getClass();
+        System.out.println(bClass);
 
-    }
-    @SuppressWarnings("unchecked")
-    public void testSet(Set<?> s1,Set<?> s2){
+        System.out.println(stringPair);
 
     }
 
