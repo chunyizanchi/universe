@@ -53,8 +53,20 @@ solve the problem:1: gradle kotlin build is different from normal gradle 2:TestC
 
 ## 2022--8-12
 ### Spring 事务相关
-Spring 事务的实现原理。1。 基于aop实现，2. 依赖于数据库事务。
+#### Spring 事务的实现原理。
+**基于aop实现**。**依赖于数据库事务**。主要分为两个部分
+1. Bean得初始化阶段，创建代理对象
+Spring在初始化bean得时候会遍历容器内所有得BeanPostProcessor 实现类，并执行其`postProcessAfterInitialization()`方法，在执行到 `AbstractAutoProxyCreator#postProcessAfterInitialization` 会遍历容器中得所有切面，查找与当前bean 相匹配得切面，
+如果事务属性的切面那就查找 `@Transational`注解及其属性值，然后根据得到得漆面创建一个代理对象。
+2. 在执行目标方法得时候进行事务增强操作
+通过代理Bean 调用方法，会触发对应得aop拦截增强器，主要类 `TransactionalInceptor`在invoke 方法得时候通过`TransactionAspectSupport#invokeWithinTransaction` 方法进行事务处理。包括开启事务，执行目标方法，事务提交，异常回归。
 
+#### Spring 事务什么时候会失效呢？
+根据上述得Spring事务得原理可窥一二。(代理方法)(本质还是Spring事务)(事务传播由ThreadLocal实现) 所以失效原因就好找了。
+1. 数据库存储引擎不支持事务
+2. 注解中值得设置，尤其注意rollback，propagation得设置。 `rollbackFor=Exception.class`和不加得区别。
+
+<img height="600" src="https://chunyizanchi.oss-cn-beijing.aliyuncs.com/life/spring-transaction.png" width="1000"/>
 
 ## 2022-08-13
 ### 初始化了一下项目
