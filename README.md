@@ -83,3 +83,7 @@ PECS : producer extends consumer super
 
 ## 2022-08-17
 ### 泛型擦除，jvm层面将类型擦除掉了。
+
+
+## 2022-08-18
+#### init netty module
