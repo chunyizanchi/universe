@@ -23,26 +23,29 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ThreadPoolAutoConfiguration {
 
-    Logger logger=LoggerFactory.getLogger(ThreadPoolAutoConfiguration.class);
+    Logger logger = LoggerFactory.getLogger(ThreadPoolAutoConfiguration.class);
 
     @Bean
     @ConditionalOnClass(ThreadPoolExecutor.class)
     public ThreadPoolExecutor diyThreadPoolExecutor() {
-        logger.info("return autoConfiguration ThreadPoolExecutor");
-        return new ThreadPoolExecutor(10, 50, 1000l, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
+        logger.info(
+                "@ConditionalOnClass(ThreadPoolExecutor.class) return autoConfiguration ThreadPoolExecutor");
+        return new ThreadPoolExecutor(10, 50, 1000l, TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(10));
     }
+
     @Bean
-    @ConditionalOnBean(ThreadPoolExecutor.class)
+    @ConditionalOnBean(name = "threadPoolExecutor")
     public ThreadPoolExecutor diyThreadPoolExecutor2() {
-        logger.info("@ConditionalOnBean(ThreadPoolExecutor.class) return autoConfiguration ThreadPoolExecutor");
-        return new ThreadPoolExecutor(10, 50, 1000l, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
+        logger.info(
+                "@ConditionalOnBean(ThreadPoolExecutor.class) return autoConfiguration ThreadPoolExecutor");
+        return new ThreadPoolExecutor(10, 50, 1000l, TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(10));
     }
 
     @Bean
     @ConditionalOnMissingClass("DemoDataListener")
-    public String conditionalOnMissingClassTest() {
+    public void conditionalOnMissingClassTest() {
         logger.info("@ConditionalOnMissingClass(DemoDataListener)");
-        return "success";
-
     }
 }
