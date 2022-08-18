@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Cyzc
  * @since [2021/11/20 09:47]
  */
-public class BaseRequest {
+public class BaseRequest implements InterfaceRequest{
 
     private String requestId;
     @JsonProperty("timestamp")

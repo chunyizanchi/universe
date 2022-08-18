@@ -8,30 +8,30 @@ package com.cyzc.base.enums;
  */
 public enum ResultError {
 
-    SUCCESS(200,"success"),
-    FAILE(100,"AAAA");
+    SUCCESS(200,"请求成功","succeed"),
+    FAILURE(100,"请求失败","request error");
 
 
-    private int code;
+    private Integer code;
     private String desc;
     private String enDesc;
 
-    ResultError(int code, String msg) {
+    ResultError(Integer code, String msg) {
         this.code = code;
         this.desc = msg;
     }
 
-    ResultError(int code, String msg, String enMsg) {
+    ResultError(Integer code, String msg, String enMsg) {
         this.code = code;
         this.desc = msg;
         this.enDesc = enMsg;
     }
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

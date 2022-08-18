@@ -87,3 +87,13 @@ PECS : producer extends consumer super
 
 ## 2022-08-18
 #### init netty module
+
+#### maven 相关。
+`<dependencyManagement>` 标签得作用：统一依赖管理。
+
+`<dependencyManagement>` 和`<dependencies>` 得区别：
+1. 所有声明在 `<dependencies>` 得依赖都会自动被子module 引用。
+2. `<dependencyManagement>` 只是声明依赖，不自动实现引入。只有子 module 声明了相同依赖并且没指定版本，才会从父 module中引入该依赖，并且 version 和 scope 都读自父module
+
+#### 初始化 BaseRequest,BaseResponse
+

@@ -1,5 +1,8 @@
 package com.cyzc.springboot.service;
 
+import com.cyzc.springboot.request.TestRequest;
+import com.cyzc.springboot.response.TestResponse;
+
 /**
  * <p>
  *
@@ -8,4 +11,5 @@ package com.cyzc.springboot.service;
  */
 public interface TestService {
 
+    TestResponse returnTest(TestRequest request);
 }
