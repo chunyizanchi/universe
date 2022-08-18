@@ -97,3 +97,4 @@ PECS : producer extends consumer super
 
 #### 初始化 BaseRequest,BaseResponse
 
+#### mp 的save 方法多次调用了实体类的get方法。
