@@ -103,3 +103,19 @@ PECS : producer extends consumer super
 ## 2022-08-20
 ### 观察者模式
 1
+
+## 2022-08-25
+### Spring中如何正确关闭线程池？
+这里需要考虑的是我们一般在项目中如何定义一个线程池，大部分都会说直接@Bean 定义一个线程池，然后在使用该线程池的类中，自动注入。
+这里就需要考虑几个问题了，
+1. 线程池如何关闭？ shutDown,shutDownNow, awaitTermination
+2. 线程池如何感知Spring Shutdown Hook将要被执行？
+3. 如何让线程池先于Spring Shutdown Hook关闭？
+
+线程池的销毁和Spring Bean生命周期中Bean的销毁的异同点。
+两种方式销毁线程池。
+1. 一个是自定义的线程池，需要再创建一个Bean，在该Bean中注入我们自定义的线程池对象，然后维护一个@Destory 注解来确定销毁Bean的方法
+2. 使用ThreadPoolTaskExecutor ,在类中设置一个属性 `threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);` 保证在销毁之前要shutdown 线程池。然后定义一个Bean 监听 closeContextEvent 事件，来进行shut down线程池
+
+
+使用ThreadPoolTaskExecutor 有意思的一点。set方法可以设置阻塞队列的长度，但是不能显示的指定一个阻塞队列。如果指了长度，默认创造一个linkedBlockQueue,否则创建一个 SynchronousQueue
