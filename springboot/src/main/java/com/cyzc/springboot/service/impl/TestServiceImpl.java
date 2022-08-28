@@ -28,7 +28,7 @@ public class TestServiceImpl implements TestService {
 
 
     @Override
-    public TestResponse returnTest(TestRequest request) {
+    public TestResponse returnTest(TestRequest request) throws Exception {
         log.info("request succeed");
         return TestResponse.builder()
                 .result("testId="+request.getTestId())

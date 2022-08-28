@@ -11,5 +11,5 @@ import com.cyzc.springboot.response.TestResponse;
  */
 public interface TestService {
 
-    TestResponse returnTest(TestRequest request);
+    TestResponse returnTest(TestRequest request) throws Exception;
 }
