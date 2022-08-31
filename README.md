@@ -116,6 +116,47 @@ PECS : producer extends consumer super
 两种方式销毁线程池。
 1. 一个是自定义的线程池，需要再创建一个Bean，在该Bean中注入我们自定义的线程池对象，然后维护一个@Destory 注解来确定销毁Bean的方法
 2. 使用ThreadPoolTaskExecutor ,在类中设置一个属性 `threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);` 保证在销毁之前要shutdown 线程池。然后定义一个Bean 监听 closeContextEvent 事件，来进行shut down线程池
-
+3. 实现Lifecycle接口，并在其stop方法中关闭线程池
 
 使用ThreadPoolTaskExecutor 有意思的一点。set方法可以设置阻塞队列的长度，但是不能显示的指定一个阻塞队列。如果指了长度，默认创造一个linkedBlockQueue,否则创建一个 SynchronousQueue
+补充：
+Spring boot，容器关闭会调用 AbstractApplicationContext方法的 doClose 方法 主要代码如下
+```java
+protected void doClose() {
+		// Check whether an actual close attempt is necessary...
+		if (this.active.get() && this.closed.compareAndSet(false, true)) {
+
+            // Publish shutdown event.发布事件，所以我们需要定义一个该事件的监听者
+            publishEvent(new ContextClosedEvent(this));
+            
+			// Stop all Lifecycle beans, to avoid delays during individual destruction.
+            this.lifecycleProcessor.onClose();
+            
+			// Destroy all cached singletons in the context's BeanFactory.
+			destroyBeans();
+
+			// Close the state of this context itself.
+			closeBeanFactory();
+            
+			// Let subclasses do some final clean-up if they wish...
+			onClose();
+
+			// Reset local application listeners to pre-refresh state.
+			if (this.earlyApplicationListeners != null) {
+				this.applicationListeners.clear();
+				this.applicationListeners.addAll(this.earlyApplicationListeners);
+			}
+
+			// Switch to inactive.
+			this.active.set(false);
+		}
+	}
+```
+所以 综上加上代码，应该就好理解了，还是要注意一下 spring 的生命周期。 容器初始化和容器销毁分别做了什么
+
+## 2022-08-28
+### aop
+
+## 2022-08-31
+### init rocketmq-producer module and rocketmq-consumer module
+配置很恶心，多模块下的maven依赖还是要好好解决一下
