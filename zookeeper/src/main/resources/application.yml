@@ -1,0 +1,9 @@
+server:
+  port: 8127
+spring:
+  application:
+    name: zookeeper
+zookeeper:
+  connect:
+    address: 192.168.80.101:2181
+    time-out: 2000
