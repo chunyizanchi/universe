@@ -17,7 +17,6 @@
     <module>why</module>
     <module>java</module>
     <module>algorithm</module>
-    <module>rocketmq</module>
     <module>rocketmq-producer</module>
     <module>rocketmq-consumer</module>
   </modules>

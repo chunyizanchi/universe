@@ -160,3 +160,10 @@ protected void doClose() {
 ## 2022-08-31
 ### init rocketmq-producer module and rocketmq-consumer module
 配置很恶心，多模块下的maven依赖还是要好好解决一下
+
+
+## 2022-09-01
+### 搭建dubbo demo
+依赖版本问题很恶心，以后先注意这一点，先不考虑配置问题
+高版本的dubbo的一些注解和低版本不一样 @Service -> @DubboService   @Reference-> @@DubboReference  @EnableDubbo
+-Dzookeeper.sasl.client=false  关闭zk安全验证
