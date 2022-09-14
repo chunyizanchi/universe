@@ -167,3 +167,9 @@ protected void doClose() {
 依赖版本问题很恶心，以后先注意这一点，先不考虑配置问题
 高版本的dubbo的一些注解和低版本不一样 @Service -> @DubboService   @Reference-> @@DubboReference  @EnableDubbo
 -Dzookeeper.sasl.client=false  关闭zk安全验证
+
+
+## 2022-09-15
+### 职责链模式
+首先定义一个抽象类Handler。里面定义一个两个方法，一个是处理对象的抽象方法，一个是添加Handler实现类的方法。 在使用上可以需要注意add的顺序，然后在调用处理方法 [validateHandlerTest](design/src/main/java/com/cyzc/designpattern/chainPattern/validateHandlerTest/TestDemo.java)
+github 相对路径写法
