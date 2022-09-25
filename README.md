@@ -173,3 +173,6 @@ protected void doClose() {
 ### 职责链模式
 首先定义一个抽象类Handler。里面定义一个两个方法，一个是处理对象的抽象方法，一个是添加Handler实现类的方法。 在使用上可以需要注意add的顺序，然后在调用处理方法 [validateHandlerTest](design/src/main/java/com/cyzc/designpattern/chainPattern/validateHandlerTest/TestDemo.java)
 github 相对路径写法
+
+## 2022-09-25
+### HashedWheelTimer 类实现定时任务
