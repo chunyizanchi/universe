@@ -176,3 +176,26 @@ github 相对路径写法
 
 ## 2022-09-25
 ### HashedWheelTimer 类实现定时任务
+
+## 2022-11-02
+### 字符串 hashcode 计算问题
+先看一段代码：
+```java
+System.out.println("Aa ="+"Aa".hashCode());
+System.out.println("BB ="+"BB".hashCode());
+
+public int hashCode() {
+        int h = hash;
+        if (h == 0 && value.length > 0) {
+        char val[] = value;
+
+        for (int i = 0; i < value.length; i++) {
+        h = 31 * h + val[i];
+        }
+        hash = h;
+        }
+        return h;
+        }
+```
+直接说结论：字符串类型计算hashcode，满足第一个字符串的第一个字母的ASCII码值减去第二个字符串的第一个字母的ASCII码值=1，第二个字符串的第二个字母减去第一个字符串的第二个字母=31 那么这两个字符串的hashcode一定相等。
+常见的ASCII码值：A：65 a:97
