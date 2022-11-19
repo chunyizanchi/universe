@@ -18,5 +18,26 @@ public class GenericClass<T> {
         this.t = t;
     }
 
+    public GenericClass() {
+    }
+
+    public GenericClass(T t) {
+        this.t = t;
+    }
+
+    public <T> T showGenericClass(T t) {
+        System.out.println("showGenericClass value :" + t);
+
+        System.out.println("t.Class:" + t.getClass());
+        return t;
+    }
+
+    public <T> T getObject(Class<T> t) throws InstantiationException, IllegalAccessException {
+        System.out.println("getObject " + t);
+
+        T t1 = t.newInstance();
+
+        return t1;
+    }
 
 }

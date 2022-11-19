@@ -10,11 +10,28 @@ import java.util.List;
  */
 public class Stack<E> {
 
-  /*private static final E E = ;
+    //private E e;
 
-  public E put(List<? extends E> list){
-   return E;
-  }*/
+    public E put(List<? extends E> list) {
+        E e = null;
+        return e;
+    }
 
-    //查看暂存区的是否能本本地看见
+    public void push(E e) {
+
+    }
+
+    public Stack() {
+
+    }
+
+
+    public void pushAll(Iterable<E> src) {
+
+        for (E e : src) {
+            push(e);
+        }
+
+    }
+
 }
