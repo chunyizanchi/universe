@@ -20,9 +20,9 @@ public class ReturnTest {
         try {
             int i = 10 / 0;
             return i;
-        } /*catch (Exception e) {
+        } catch (Exception e) {
             return 2;
-        }*/ finally {
+        } finally {
             //finally 里return 字节码里会没有 athrow指令，所以就抛不出异常
             return 1;
         }
