@@ -3,6 +3,7 @@ package com.cyzc.java.collection;
 
 import com.cyzc.java.entity.Student;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
@@ -23,7 +24,7 @@ public class PriorityQueueDemo {
         q.offer("2");
         q.offer("5");
 
-
+        HashSet<Object> objects = new HashSet<>();
         //出列
         System.out.println(q.poll());  //1
         System.out.println(q.poll());  //2

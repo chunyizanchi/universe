@@ -1,6 +1,8 @@
 package com.cyzc.java.collection;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -18,6 +20,10 @@ public class MapRemoveDemo {
 
         String remove = map.remove("3");
         System.out.println(remove);
+
+        List<String> a=new ArrayList<>();
+        List<String> lists = a;
+        lists.add("2");
     }
 
 }
