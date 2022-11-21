@@ -1,5 +1,7 @@
 package com.cyzc.java.generic.entity;
 
+import java.util.Collection;
+
 /**
  * <p> 泛型类
  *
@@ -38,6 +40,27 @@ public class GenericClass<T> {
         T t1 = t.newInstance();
 
         return t1;
+    }
+
+
+    public Long getCounts(Collection<? extends Animal> collections){
+        collections.forEach(System.out::println);
+       /*  不能修改 是这个意思。 Collection<? extends Animal> collections 声明的对象不能被修改
+        Animal animal=new Animal();
+        collections.add(new Biology());*/
+        return (long) collections.size();
+    }
+
+    public Long updateCollections(Collection<? super Animal> collections){
+        collections.forEach(System.out::println);
+
+        collections.add(new Dog());
+        collections.add(new Cat());
+        collections.add(new Animal());
+        //collections.add(new Biology());//编译错误
+        //collections.add(new Object());//编译错误
+        collections.forEach(System.out::println);
+        return (long)collections.size();
     }
 
 }

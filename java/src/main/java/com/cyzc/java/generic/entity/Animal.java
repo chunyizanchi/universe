@@ -6,6 +6,6 @@ package com.cyzc.java.generic.entity;
  * @author Cyzc
  * @since [2022/08/15 23:38]
  */
-public class Animal {
+public class Animal extends Biology{
 
 }

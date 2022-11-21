@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * <p>
+ * <p>GenericCovariance 泛型的协变
  *
  * @author Cyzc
  * @since [2022/08/15 23:55]
