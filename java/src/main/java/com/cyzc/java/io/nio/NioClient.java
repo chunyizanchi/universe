@@ -10,7 +10,7 @@ import java.net.Socket;
  * @author Cyzc
  * @since [2022/11/24 16:32]
  */
-public class NIOClient {
+public class NioClient {
 
     public static void main(String[] args)  {
 

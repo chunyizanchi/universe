@@ -1,5 +1,6 @@
 package com.cyzc.java.io.nio;
 
+import com.cyzc.java.io.MyIOUtils;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -22,7 +23,7 @@ import java.util.Set;
  * @author Cyzc
  * @since [2022/11/24 16:03]
  */
-public class NIOServer {
+public class NioServer {
 
     public static void main(String[] args) throws IOException {
         //开启一个Selector
@@ -54,7 +55,8 @@ public class NIOServer {
 
                 SelectionKey selectionKey = keyIterator.next();
 
-                //ServerSocketChannel 才能处理这个事件
+                //ServerSocketChannel 才能处理这个事件,
+                //如果是 OP_ACCEPT 需要为ServerSocketChannel 创建一个SocketChannel,来建立链接
                 if (selectionKey.isAcceptable()) {
                     //
                     ServerSocketChannel serverSocketChannel1 = (ServerSocketChannel) selectionKey.channel();
@@ -68,7 +70,7 @@ public class NIOServer {
                 } else if (selectionKey.isReadable()) {
                     SocketChannel channel = (SocketChannel) selectionKey.channel();
                     System.out.println(
-                            "读到来自客户端的数据：" + readDataFromSocketChannel(channel));
+                            "读到来自客户端的数据：" + MyIOUtils.readDataFromSocketChannel(channel,1024));
                     channel.close();
                 }
                 keyIterator.remove();
@@ -78,43 +80,6 @@ public class NIOServer {
 
         }
 
-    }
-
-    private static String readDataFromSocketChannel(SocketChannel socketChannel)
-            throws IOException {
-        //创建ByteBuffer 分配 1024字节
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
-        //创建一个StringBuilder 来接受数据
-        StringBuilder data = new StringBuilder();
-
-        while (true) {
-            //先清除buffer
-            buffer.clear();
-            //从socketChannel里读取字节序列到buffer中，返回值为读取的字节数
-            int read = socketChannel.read(buffer);
-            //如果为-1 表示EOF (end of file) 文件的末端
-            if (read == -1) {
-                break;
-            }
-            //切换读写
-            buffer.flip();
-            //获取buffer的limit,切换为读数据时，buffer的limit 属性会发生变化，
-            int limit = buffer.limit();
-            //所以存储 要读取的数据的char数组的范围也就能确定了
-            char[] dst = new char[limit];
-
-            for (int i = 0; i < limit; i++) {
-                //将buffer中的数据额转换成char[]里面的数据
-                dst[i] = (char) buffer.get(i);
-            }
-            //
-            data.append(dst);
-
-            buffer.clear();
-
-        }
-
-        return data.toString();
     }
 
 }
