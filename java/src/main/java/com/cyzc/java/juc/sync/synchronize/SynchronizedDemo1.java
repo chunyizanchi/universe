@@ -1,4 +1,4 @@
-package com.cyzc.java.juc.thread;
+package com.cyzc.java.juc.sync.synchronize;
 
 /**
  * <p>锁代码块反编译实例

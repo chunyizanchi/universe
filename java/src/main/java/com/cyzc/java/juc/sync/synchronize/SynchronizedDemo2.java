@@ -1,4 +1,6 @@
-package com.cyzc.java.juc.thread;
+package com.cyzc.java.juc.sync.synchronize;
+
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * <p>
@@ -9,6 +11,7 @@ package com.cyzc.java.juc.thread;
 public class SynchronizedDemo2 {
 
     public synchronized void testSync(){
+        LockSupport.park();
         System.out.println("锁普通方法");
     }
 

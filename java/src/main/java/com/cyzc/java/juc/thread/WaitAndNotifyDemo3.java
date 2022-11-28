@@ -25,13 +25,16 @@ class ThreadA implements Runnable{
     @Override
     public void run() {
         synchronized (object){
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 10; i++) {
                 if (i%2==0){
                     System.out.println(Thread.currentThread().getName()+":"+i);
+                    System.out.println(Thread.currentThread().getName()+":"+"object.notifyAll();");
                     object.notifyAll();
 
                     try {
+                        System.out.println(Thread.currentThread().getName()+":"+"object.wait();");
                         object.wait();
+
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -52,13 +55,15 @@ class ThreadB implements Runnable{
     @Override
     public void run() {
         synchronized (object){
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 10; i++) {
                 if (i%2==1){
                     System.out.println(Thread.currentThread().getName()+":"+i);
+                    System.out.println(Thread.currentThread().getName()+":"+"object.notifyAll();");
                     object.notifyAll();
-
                     try {
+                        System.out.println(Thread.currentThread().getName()+":"+"object.wait();");
                         object.wait();
+
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

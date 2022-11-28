@@ -1,5 +1,6 @@
-package com.cyzc.java.juc.demo;
+package com.cyzc.java.juc.aqs;
 
+import com.cyzc.java.juc.demo.FutureDemo;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;

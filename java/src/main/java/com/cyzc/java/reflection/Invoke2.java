@@ -30,6 +30,7 @@ public class Invoke2 {
         Field[] declaredFields = customerSelect.getClass().getDeclaredFields();
 
         for (Field field:declaredFields){
+            System.out.println("field:"+field);
             field.setAccessible(true);
             String name = field.getName();
             if ("type".equals(name)){

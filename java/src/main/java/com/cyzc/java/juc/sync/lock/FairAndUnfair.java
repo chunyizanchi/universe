@@ -1,4 +1,4 @@
-package com.cyzc.java.juc.demo;
+package com.cyzc.java.juc.sync.lock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

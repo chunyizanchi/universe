@@ -24,6 +24,7 @@ public class Invoke {
         Class<? extends CustomerSelect> aClass = customerSelect.getClass();
         Field[] declaredFields = customerSelect.getClass().getDeclaredFields();
 
+
         StringBuilder judge = new StringBuilder("s");
         for (Field field:declaredFields){
             PropertyDescriptor pd=new PropertyDescriptor(field.getName(),aClass);

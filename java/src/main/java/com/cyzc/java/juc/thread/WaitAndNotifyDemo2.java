@@ -36,7 +36,7 @@ class PrintNumber implements Runnable{
                 System.out.println(i);
                 if (i%2==0){
                    object.notifyAll();
-
+                    System.out.println("PrintNumber 调用了 object.notifyAll();");
                     try {
                         object.wait();
                     } catch (InterruptedException e) {
