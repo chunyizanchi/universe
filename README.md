@@ -199,3 +199,36 @@ public int hashCode() {
 ```
 直接说结论：字符串类型计算hashcode，满足第一个字符串的第一个字母的ASCII码值减去第二个字符串的第一个字母的ASCII码值=1，第二个字符串的第二个字母减去第一个字符串的第二个字母=31 那么这两个字符串的hashcode一定相等。
 常见的ASCII码值：A：65 a:97
+
+
+## 2022-11-19
+### Java SPI
+
+### Java Reflection
+
+### Java Exception
+
+### Java Annotation
+
+
+## 2022-11-21
+### collection
+
+### exception finally return
+
+### generic
+
+### juc wait&notify
+
+### juc Thread.join
+
+## 2022-11-24
+### ThreadPool Exception
+
+
+### UncaughtExceptionHandler
+
+## 2022-11-28
+### bio
+
+### nio
