@@ -3,12 +3,10 @@ package com.cyzc.java.io.nio;
 import com.cyzc.java.io.MyIOUtils;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since [2022/11/28 16:01]
  */
 @Slf4j
-public class NioServer1 {
+public class NioServerDemo2 {
 
     public static void main(String[] args) throws IOException {
         //创建ServerSocketChannel
@@ -83,40 +81,4 @@ public class NioServer1 {
 
     }
 
-    String readDataFromChannel(SocketChannel channel) throws IOException {
-
-        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        while (true) {
-
-            byteBuffer.clear();
-
-            int read = channel.read(byteBuffer);
-
-            if (read == -1) {
-                break;
-            }
-
-            //现在是写模式，将数据写到buffer中， buffer的元素有 position，limit,capacity
-            //切换为读模式
-            byteBuffer.flip();
-            //现在byte有效长度就是limit。遍历一下将position-limit的数据拿出来
-            // 我需要怎么做？ 需要将byte数组转为char数组
-            int limit = byteBuffer.limit();
-
-            char[] chars = new char[limit];
-
-            for (int i = 0; i < limit; i++) {
-
-                chars[i] = (char) byteBuffer.get(i);
-            }
-            stringBuilder.append(chars);
-            byteBuffer.clear();
-        }
-        return stringBuilder.toString();
-
-
-    }
 }

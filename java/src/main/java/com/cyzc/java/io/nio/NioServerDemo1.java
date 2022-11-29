@@ -4,7 +4,6 @@ import com.cyzc.java.io.MyIOUtils;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -23,7 +22,7 @@ import java.util.Set;
  * @author Cyzc
  * @since [2022/11/24 16:03]
  */
-public class NioServer {
+public class NioServerDemo1 {
 
     public static void main(String[] args) throws IOException {
         //开启一个Selector

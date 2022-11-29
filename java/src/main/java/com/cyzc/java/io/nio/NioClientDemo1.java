@@ -1,5 +1,6 @@
 package com.cyzc.java.io.nio;
 
+import com.cyzc.java.io.MyIOUtils;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -13,13 +14,14 @@ import lombok.extern.slf4j.Slf4j;
  * @since [2022/11/28 16:01]
  */
 @Slf4j
-public class NioClient1 {
+public class NioClientDemo1 {
 
     public static void main(String[] args) throws IOException {
         //client SocketChannel对象，设置非阻塞，绑定端口
         SocketChannel socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(false);
-        InetSocketAddress inetSocketAddress = new InetSocketAddress(8888);
+        InetSocketAddress inetSocketAddress = new InetSocketAddress(5680);
+
         //判断是否 connect 成功，如果没成功返回log
         if (!socketChannel.connect(inetSocketAddress)){
             while (!socketChannel.finishConnect()){
@@ -27,9 +29,16 @@ public class NioClient1 {
             }
         }
         // channel 是和buffer 一起使用的，通过channel.write(buffer) 将数据写到 channel中
-        ByteBuffer byteBuffer = ByteBuffer.wrap("hello i am NioClient1".getBytes());
+        ByteBuffer byteBuffer = ByteBuffer.wrap("sayHi".getBytes());
         socketChannel.write(byteBuffer);
 
+        ByteBuffer read = ByteBuffer.allocate(1024);
+
+        String result=null;
+        while (socketChannel.read(read)!=-1){
+            result = MyIOUtils.readDataFromSocketChannel(socketChannel, 1024);
+        }
+        log.info("返回数据："+result);
 
         socketChannel.close();
     }
