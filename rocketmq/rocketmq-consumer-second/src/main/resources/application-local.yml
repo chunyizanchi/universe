@@ -1,0 +1,14 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: rocketmq-consumer-second
+
+rocketmq:
+  name-server: 192.168.80.100:9876
+  producer:
+    group: cyzc-group
+  consumer:
+    message-model:
+

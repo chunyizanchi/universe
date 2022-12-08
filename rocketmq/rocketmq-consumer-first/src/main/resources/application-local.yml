@@ -1,0 +1,13 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: rocketmq-consumer
+
+rocketmq:
+  name-server: 192.168.80.100:9876
+  producer:
+    group: cyzc-group
+
+
